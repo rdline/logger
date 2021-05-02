@@ -1,0 +1,21 @@
+node_modules\intel\lib\logger.js:
+
+
+function Logger(name) {
+  if (!name) {
+    name = ROOT;
+  }
+//  name = name.replace(OTHER_DIVIDERS, DIVIDER);<-----------comment this line
+  if (name in __loggers) {
+    return __loggers[name];
+  }
+  __loggers[name] = this;
+  this._name = name;
+  disableLevels(this);
+
+  Filterer.call(this);
+
+  this._handlers = [];
+
+  dbug('Logger (%s) created', name);
+}
